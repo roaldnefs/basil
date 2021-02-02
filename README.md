@@ -11,7 +11,7 @@
             alt="GitHub - License">
     </a>
     <a href="https://github.com/roaldnefs/basil/actions">
-        <img src="https://img.shields.io/github/workflow/status/roaldnefs/basil/tests?style=for-the-badge&color=darkgreen"
+        <img src="https://img.shields.io/github/workflow/status/roaldnefs/basil/test?style=for-the-badge&color=darkgreen"
             alt="GitHub Workflow Status">
     </a>
     <a href="https://github.com/roaldnefs/basil/graphs/contributors">

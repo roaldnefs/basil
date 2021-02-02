@@ -1,0 +1,25 @@
+name: test
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      # Us the `arduino/setup-arduino-cli` action to install and
+      # configure the Arduino CLI on the system.
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v1.0.0
+
+      # Install the platform
+      - name: Install platform
+        run: |
+          arduino-cli config add board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json
+          arduino-cli core update-index
+
+      # Finally, compile the sketch, using the FQBN esp8266:esp8266:nodemcuv2.
+      - name: Compile Sketch
+        run: arduino-cli compile --fqbn esp8266:esp8266:nodemcuv2 .
