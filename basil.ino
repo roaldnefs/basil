@@ -1,5 +1,6 @@
 #define ANA A0
 #define DIGI D5
+#define POMPOUT D6
 
 
 double analogValue = 0.0;
@@ -12,6 +13,7 @@ void setup() {
     // Setup the analog and digital input pins
     pinMode(ANA, INPUT);
     pinMode(DIGI, INPUT);
+    pinMode(POMPOUT, OUTPUT);
 
     // Setup serial connection
     Serial.begin(115200);
@@ -23,6 +25,9 @@ void loop() {
     // Read the pin values
     analogValue = analogRead(ANA);
     digitalValue = digitalRead(DIGI);
+
+    // Activate the pump
+    digitalWrite(POMPOUT, true);
 
     // Print the latest readings to the serial console
     Serial.print("Analog raw: ");
