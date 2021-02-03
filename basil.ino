@@ -2,11 +2,13 @@
 #define DIGI D5
 #define POMPOUT D6
 
+// Hold the threshold for when the watering pump need to be
+// activated (digital value)
+#define THRESHOLD 0
 
+// Holds the digital and analog reading from the moisture sensor
 double analogValue = 0.0;
 int digitalValue = 0;
-double analogVolts = 0.0;
-unsigned long timeHolder = 0;
 
 
 void setup() {
@@ -26,8 +28,15 @@ void loop() {
     analogValue = analogRead(ANA);
     digitalValue = digitalRead(DIGI);
 
-    // Activate the pump
-    digitalWrite(POMPOUT, true);
+    // Activate the pump if the digital sensor value received from
+    // the moisture sensore falls below the threshold
+    if (digitalValue > THRESHOLD) {
+      // Activate the pump
+      digitalWrite(POMPOUT, true);
+    } else {
+      // Deactivate the pump
+      digitalWrite(POMPOUT, false);
+    }
 
     // Print the latest readings to the serial console
     Serial.print("Analog raw: ");
@@ -35,5 +44,6 @@ void loop() {
     Serial.print("Digital raw: ");
     Serial.println(digitalValue);
     Serial.println(" ");
+
     delay(1000);
 }
